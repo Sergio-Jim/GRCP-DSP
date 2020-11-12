@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+message Songs { 
+ string title = 1;
+ string genre = 2;
+ string platform = 3;
+}
+
+message Artists {  
+  string name = 1;
+  string member = 2;
+}
+
+message RecordInfo {  
+  string key = 1;
+  string date = 2;
+  repeated Artists artists = 3;
+  string band = 4;
+  repeated Songs songs = 5;
+}
+
+message hashCode {
+  string key = 1;
+}
+
+service RecordsService {    
+    rpc writeRecord(RecordInfo) returns (hashCode);
+	rpc updateRecord(hashCode) returns (RecordInfo);
+	rpc viewRecord(hashCode) returns (RecordInfo);
+}
